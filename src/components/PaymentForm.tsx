@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react"
-import { IPayment, TCategory } from "../types"
+import {TCategory } from "../types"
 import { todayISO } from "../format"
 import { usePaymentsStore } from "./store"
 import { CATEGORY_LABELS, CATEGORY_LIST } from "../categories"
