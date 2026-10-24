@@ -1,0 +1,77 @@
+const count = 0 // выведено: number
+let title: string = "" // тип указан явно (лишний, но допустимый)
+
+
+
+export interface IPayment {
+    id: string
+    title: string
+    amount: number
+    due: string
+    category: Category
+    paid: boolean
+}
+
+
+
+export type TCategory = "video" | "apps" | "mobile" | "learning" | "other"
+
+
+
+export type TNewPayment = Omit<IPayment, "id" | "paid">
+
+
+
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+    video: "Видео и музыка",
+    apps: "Приложения",
+    mobile: "Связь",
+    learning: "Обучение",
+    other: "Другое",
+}
+        
+        
+                                        //Дженерик
+const [category, setCategory] = useState<Category>("video")
+
+
+
+export const usePaymentsStore = create<IPaymentsState>()(
+    persist(
+        (set) => ({
+            /* ... */
+        }),
+        { name: "payments", storage: createJSONStorage(() => localStorage) },
+    ),
+)
+
+
+
+
+
+export const formatMoney = (value: number): string => money.format(value)
+
+export function dateParts(iso: string): { day: string; month: string } {
+    /* ... */
+}
+
+interface IPaymentsState {
+    items: IPayment[]
+    addPayment: (data: INewPayment) => void
+    removePayment: (id: string) => void
+    togglePaid: (id: string) => void
+}
+
+
+
+
+
+// 1. Object.keys по умолчанию возвращает string[]
+export const CATEGORY_LIST = Object.keys(CATEGORY_LABELS) as Category[]
+
+// 2. Из select приходит string, но варианты построены из CATEGORY_LIST
+setCategory(e.target.value as Category)
+
+// 3. Object.fromEntries возвращает обобщённый объект
+const map = Object.fromEntries(/* ... */) as Record<Category, Row>
